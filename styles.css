@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;400;500;600;700;800;900&display=swap');
+
+:root {
+    --bg: #0e1628;
+    --alternative-bg: #333333;
+    --buttons-bg: #e7e1e1;
+    --buttons-active-bg: #9f9d9d;
+    --text: #f4f4f4;
+    --alternative-text: #131313;
+    --font: 'Inter', sans-serif;
+    --processing: #005fbf;
+    --success: #229c30;
+    --error: #7d0404;
+}
+
+* {
+    color: var(--text);
+    font-family: var(--font);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+
+    min-height: 100vh;
+    padding: .5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    background: var(--alternative-bg);
+
+    width: fit-content;
+    max-width: 100%;
+    padding: 2rem 1rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.main h1 {
+    margin: .5rem 0;
+}
+
+.main .message {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.main .message.waiting {
+    color: var(--processing);
+}
+
+.main .message.scaned {
+    color: var(--success);
+}
+
+.main .message.error {
+    color: var(--error);
+}
+
+.main .code {
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.main .simulate-scan-button {
+    background: var(--buttons-bg);
+    color: var(--alternative-text);
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+
+    padding: .5rem .5rem;
+    transition: background .1s linear;
+}
+
+.main .simulate-scan-button:active {
+    background: var(--buttons-active-bg);
+}

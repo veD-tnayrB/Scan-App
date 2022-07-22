@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="./onscan.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <title>Scan App</title>
+    </head>
+    <body>
+        <main class="main">
+            <h1>Welcome to the Scan App!</h1>
+
+            <span class="message waiting">Waiting for a scan...</span>
+            <h3 class="code"></h3>
+            <button class="simulate-scan-button">
+                Simulate Scan
+            </button>
+        </main>
+        <script>
+            // Provides all the events to the entire document
+            onScan.attachTo(document, { reactToPaste: true, singleScanQty: 1 });
+            const message = document.querySelector('.message');
+            const codeElement = document.querySelector('.code');
+
+
+            // Displays the scan code
+            document.addEventListener('scan', (sScancode, iQuatity ) => {
+                message.textContent = 'A scan has been detected';
+                message.classList.replace('waiting', 'scaned');
+
+                const { scanCode: code} = sScancode.detail;
+                codeElement.textContent = code;
+                console.log(code)
+            });
+
+
+            // This should display an error message
+            document.addEventListener('onScanError', (oDebug) => {
+                message.textContent = 'Oops looks like there was a mistake, try again';
+                message.classList.replace('waiting', 'error');
+                codeElement.textContent = '';
+            })
+
+
+            // Simulate a scan with a random code each time
+            const simulateScanButton = document.querySelector('.simulate-scan-button');
+
+            simulateScanButton.addEventListener('click', () => {
+                const LIMIT_NUMBER = 1001; // This can be any number
+
+                const number = Math.floor(Math.random() * LIMIT_NUMBER);
+                onScan.simulate(document, number);
+            })
+        </script>
+    </body>
+</html>
